@@ -1,4 +1,3 @@
-from django.contrib.auth import authenticate
 from rest_framework import serializers
 from rest_framework.authtoken.models import Token
 
@@ -30,3 +29,10 @@ class UserRegistrationSerializer(serializers.ModelSerializer):
         user = User.objects.create_user(**validated_data)
         user.set_password(validated_data.get('password'))
         return validated_data
+
+# Serializer for User Login
+class LoginSerializer(serializers.ModelSerializer):
+    """ this is User Login Serializer for User Login through API """
+    class Meta:
+        model = User
+        fields = ['username', 'password']
